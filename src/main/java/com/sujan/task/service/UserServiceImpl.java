@@ -12,6 +12,7 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
+
 @Service
 public class UserServiceImpl implements UserDetailsService {
 
@@ -25,20 +26,16 @@ public class UserServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-       return new User("admin","password",new ArrayList<>());
+        return new User("admin", "password", new ArrayList<>());
     }
 
-    public UserModel addUser(UserModel userModel)
-    {
+    public UserModel addUser(UserModel userModel) {
         return userRepo.save(userModel);
     }
 
-    public UserModel getUsersByUsernameAndPassword(String username, String password)
-    {
-        return userRepo.getUserByUsernameAndPassword(username,password);
+    public UserModel getUsersByUsernameAndPassword(String username, String password) {
+        return userRepo.getUserByUsernameAndPassword(username, password);
     }
-
-
 
 
 }

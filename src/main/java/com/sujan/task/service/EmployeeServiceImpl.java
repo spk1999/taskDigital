@@ -22,28 +22,24 @@ public class EmployeeServiceImpl {
         this.employeeRepo = employeeRepo;
     }
 
-    public Page<Employee> getEmployees(int offset , int limit ,int orderby)
-    {
+    public Page<Employee> getEmployees(int offset, int limit, int orderby) {
         Pageable pageable;
-        if(orderby==2) {
-             pageable = PageRequest.of(offset, limit, Sort.by("name").descending());
-        }
-        else {
-             pageable = PageRequest.of(offset, limit, Sort.by("name").ascending());
+        if (orderby == 2) {
+            pageable = PageRequest.of(offset, limit, Sort.by("name").descending());
+        } else {
+            pageable = PageRequest.of(offset, limit, Sort.by("name").ascending());
         }
         return employeeRepo.findAll(pageable);
 
     }
 
-    public Employee saveEmployee(Employee employee)
-    {
-      return employeeRepo.save(employee);
+    public Employee saveEmployee(Employee employee) {
+        return employeeRepo.save(employee);
     }
 
 
-    public SucessDto deleteEmployee(int id)
-    {
-         employeeRepo.delete(new Employee(id));
-         return new SucessDto(true);
+    public SucessDto deleteEmployee(int id) {
+        employeeRepo.delete(new Employee(id));
+        return new SucessDto(true);
     }
 }

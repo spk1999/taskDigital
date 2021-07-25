@@ -26,11 +26,11 @@ public class EmployeeController {
     }
 
     @GetMapping("/employee")
-    public ResponseEntity<Page<Employee>> getEmployees(@RequestParam(name = "offset",required = true ) int offset,
-                                                       @RequestParam(name = "limit", required = true )  int limit,
-                                                       @RequestParam(name = "orderBy", required = true )  int orderby) {
+    public ResponseEntity<Page<Employee>> getEmployees(@RequestParam(name = "offset", required = true) int offset,
+                                                       @RequestParam(name = "limit", required = true) int limit,
+                                                       @RequestParam(name = "orderBy", required = true) int orderby) {
 
-        return new ResponseEntity<>(employeeService.getEmployees(offset,limit ,orderby), HttpStatus.OK);
+        return new ResponseEntity<>(employeeService.getEmployees(offset, limit, orderby), HttpStatus.OK);
     }
 
     @PostMapping("/employee")

@@ -13,8 +13,6 @@ public class JwtResponseDto {
     }
 
     public JwtResponseDto(String token) {
-
-
         this.token = token;
     }
 }

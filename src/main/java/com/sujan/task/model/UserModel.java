@@ -1,8 +1,6 @@
 package com.sujan.task.model;
 
 
-
-
 import javax.persistence.*;
 
 import com.sujan.task.constants.Tables;

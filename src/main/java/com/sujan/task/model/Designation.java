@@ -31,6 +31,7 @@ public class Designation {
     public void setDesignation(String designation) {
         this.designation = designation;
     }
+
     @JsonIgnore
     public Employee getEmployees() {
         return employees;
