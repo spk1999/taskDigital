@@ -9,7 +9,7 @@ import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class UserController {
 
     private UserServiceImpl userService;
@@ -19,7 +19,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/user")
+    @PostMapping("/register")
     public ResponseEntity<UserModel> adduser(@NonNull @RequestBody UserModel userModel) {
         return new ResponseEntity<>(userService.addUser(userModel), HttpStatus.CREATED);
     }

@@ -26,16 +26,22 @@ public class UserServiceImpl implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 
-        return new User("admin", "password", new ArrayList<>());
+        UserModel userModel = new UserModel();
+        userModel= userRepo.findByUsername(username);
+        if(userModel==null)
+        {
+            throw new UsernameNotFoundException("Please check username or password");
+        }
+        return new User(userModel.getUsername(), userModel.getPassword(), new ArrayList<>());
     }
 
     public UserModel addUser(UserModel userModel) {
         return userRepo.save(userModel);
     }
 
-    public UserModel getUsersByUsernameAndPassword(String username, String password) {
-        return userRepo.getUserByUsernameAndPassword(username, password);
-    }
+//    public UserModel getUsersByUsernameAndPassword(String username, String password) {
+//        return userRepo.getUserByUsernameAndPassword(username, password);
+//    }
 
 
 }

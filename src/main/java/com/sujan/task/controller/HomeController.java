@@ -14,7 +14,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping
+@RequestMapping("/api")
 public class HomeController {
 
 
@@ -39,7 +39,7 @@ public class HomeController {
             throw new Exception("Invaid username or password", e);
         }
 
-        final UserModel userDetails = userService.getUsersByUsernameAndPassword(requestDto.getUsername(), requestDto.getPassword());
+        final UserDetails userDetails = userService.loadUserByUsername(requestDto.getUsername());
 
         final String token = jwtUtil.generateToken(userDetails);
 

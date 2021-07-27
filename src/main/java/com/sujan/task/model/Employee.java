@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.sujan.task.constants.Tables;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity
@@ -16,19 +17,28 @@ public class Employee {
     private String address;
     private String phone;
     private int enabled;
-    @OneToMany(cascade = {CascadeType.ALL})
+    private Timestamp createdDate;
+    private String createdBy;
+    private Timestamp lastModifiedDate;
+    private String modifiedBy;
+    @OneToMany(cascade = CascadeType.ALL, orphanRemoval = true)
+    @JoinColumn(name = "employees_id" ,referencedColumnName = "id")
     private List<Designation> designation;
 
 
     public Employee() {
     }
 
-    public Employee(int id, String name, String address, String phone, int enabled, List<Designation> designation) {
+    public Employee(int id, String name, String address, String phone, int enabled, Timestamp createdDate, String createdBy, Timestamp lastModifiedDate, String modifiedBy, List<Designation> designation) {
         this.id = id;
         this.name = name;
         this.address = address;
         this.phone = phone;
         this.enabled = enabled;
+        this.createdDate = createdDate;
+        this.createdBy = createdBy;
+        this.lastModifiedDate = lastModifiedDate;
+        this.modifiedBy = modifiedBy;
         this.designation = designation;
     }
 
@@ -72,6 +82,37 @@ public class Employee {
         this.enabled = enabled;
     }
 
+    public Timestamp getCreatedDate() {
+        return createdDate;
+    }
+
+    public void setCreatedDate(Timestamp createdDate) {
+        this.createdDate = createdDate;
+    }
+
+    public Timestamp getLastModifiedDate() {
+        return lastModifiedDate;
+    }
+
+    public void setLastModifiedDate(Timestamp lastModifiedDate) {
+        this.lastModifiedDate = lastModifiedDate;
+    }
+
+    public String getModifiedBy() {
+        return modifiedBy;
+    }
+
+    public void setModifiedBy(String modifiedBy) {
+        this.modifiedBy = modifiedBy;
+    }
+
+    public String getCreatedBy() {
+        return createdBy;
+    }
+
+    public void setCreatedBy(String createdBy) {
+        this.createdBy = createdBy;
+    }
 
     public List<Designation> getDesignation() {
         return designation;

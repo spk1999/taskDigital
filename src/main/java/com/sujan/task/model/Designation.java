@@ -13,7 +13,8 @@ public class Designation {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
     private String designation;
-    @ManyToOne
+    @ManyToOne( cascade = CascadeType.ALL)
+    @JoinColumn(name = "employees_id",referencedColumnName = "id" )
     private Employee employees;
 
     public int getId() {
