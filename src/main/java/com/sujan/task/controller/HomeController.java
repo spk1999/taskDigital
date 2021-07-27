@@ -5,6 +5,8 @@ import com.sujan.task.dto.JwtResponseDto;
 import com.sujan.task.model.UserModel;
 import com.sujan.task.service.UserServiceImpl;
 import com.sujan.task.util.JwtUtil;
+import io.swagger.annotations.Api;
+import io.swagger.annotations.ApiOperation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.context.properties.bind.Name;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +17,7 @@ import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/api")
+@Api("Auth APis")
 public class HomeController {
 
 
@@ -31,6 +34,7 @@ public class HomeController {
     }
 
     @PostMapping("/auth")
+    @ApiOperation(value = "Generate token/ authenticate", notes = "This Api is used to generate token/ authenticate.")
     public JwtResponseDto authenticate(@RequestBody JwtRequestDto requestDto) throws Exception {
         try {
             authenticationManager.authenticate(
