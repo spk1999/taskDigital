@@ -63,4 +63,13 @@ public class EmployeeController {
     }
 
 
+    @DeleteMapping("/employee/{id}")
+    @ApiOperation(value = "Employee delete", notes = "This Api is used to delete Employees.")
+    public ResponseEntity<SucessDto> deleteEmployee1(@PathVariable("id") int id) {
+        return new ResponseEntity<>(employeeService.deleteEmployee(id), HttpStatus.OK);
+    }
+
+
+
+
 }
